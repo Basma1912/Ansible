@@ -1,0 +1,39 @@
+---
+- hosts: windows_servers
+  tasks:
+  - name: Ensure that IIS is installed
+    win_feature:
+      name: "Web-Server"
+      state: present
+      restart: no
+      include_sub_features: no
+      include_management_tools: no
+  
+  - name: Ensure the homepage website directory is created
+    win_file:
+      path: "{{ homepage_site_path }}"
+      state: directory
+
+  - name: Create sub iis website
+    win_iis_website:
+      name: "homepage Application"
+      state: started
+      port: 8080
+      physical_path: "{{ homepage_site_path }}"
+
+  - name: Copy default index file to site
+    win_copy:
+      src: "{{ default_index_file }}"
+      dest: "{{ homepage_site_path}}\\index.html"
+
+  - name: Ensure filewall rule is in place for site
+    win_firewall_rule:
+      name: homepage
+      enabled: yes
+      state: present
+      localport: 8080
+      action: allow
+      direction: in
+      protocol: tcp
+
+...
