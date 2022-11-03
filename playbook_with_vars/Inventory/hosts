@@ -1,0 +1,11 @@
+[windows_servers]
+server01
+server02
+
+[linux_servers]
+server03
+server04
+
+
+
+

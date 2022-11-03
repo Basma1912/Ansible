@@ -1,0 +1,12 @@
+---
+- name: Configure
+  hosts: linux_servers 
+  become: true
+
+  tasks:
+    - name: Copy config file
+      copy:
+        content: "myvar: {{ myvar }}"
+        dest: /etc/my_var
+        mode: 0644
+...

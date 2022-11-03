@@ -1,0 +1,1 @@
+An example on how to use the group_var with a playbook and how to define and use a variable inside the playbook 

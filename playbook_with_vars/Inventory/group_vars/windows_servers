@@ -1,0 +1,8 @@
+---
+ansible_user: <user@domain>
+ansible_password: <password>
+ansible_connection: winrm
+ansible_winrm_transport: credssp
+ansible_port: 5986 # https port, change to 5985 if using http
+homepage_site_path: "c:\\inetpub\\wwwroot\\homepage"
+default_index_file: "index.html"
